@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import StyledImg from '../../../Components/Container/StyledImg';
 import { useContext } from 'react';
 import { OutletContext } from '../../ForOutlet';
+import CustomRow from '../../../Components/Container/CustomRow';
+import CustomColumn from '../../../Components/Container/CustomColumn';
+import CustomFont from '../../../Components/Container/CustomFont';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -19,35 +22,46 @@ const PageContainer = styled(ContainerCenter)`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 30px;
     gap: 10px;
     position: relative;
+    background-color: #353535;
 `
 
-// 기본 버튼 디자인
-const BasicButton = styled.button`
-width: ${props => props.width || '20%'};
-height: ${props => props.height || '3vh'};
-border: none;
-background-color: orange;
-border-radius: 10px;
-color: white;
-font-family: 'RIDIBatang';
-font-size: 10px;
-
+const LogInButton = styled.button`
 display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: center;
+background-color: #85E176;
+border-radius: 20px;
+border: none;
+width: 6rem;
+padding: 0.5rem;
+`;
+
+const Id = styled.input`
+display: flex;
+border: 1px solid #85E176;
+background-color: transparent;
+border-radius: 20px;
+width: 15rem;
+height: 2rem;
+padding: 0.3rem;
+
+&::placeholder {
+  color: #D9D9D9;
+}
+
+&:active {
+  outline: none;  // 클릭 시 기본적으로 적용되는 아웃라인 제거
+}
 `;
 
 const Find = styled.button`
-width: 30%;
+width: 6rem;
 border: none;
 background-color: transparent;
-color: #FFCE86;
-font-family: 'RIDIBatang';
-font-size: 12px;
+color: #85E176;
 
 display: flex;
 flex-direction: row;
@@ -56,66 +70,51 @@ justify-content: center;
 text-decoration: underline;
 `;
 
-const LogIn = styled.input`
-border: 1px solid orange;
-border-radius: 20px;
-
-display:flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-
-width: 80%;
-height: 5vh;
-padding-left: 10px;
-
-&::placeholder {
-  color: #FFCE86;
-  font-family: 'RIDIBatang';
-}
-`;
-
-const Detail = styled.a`
-color: #949494;
-font-family: 'RIDIBatang';
-font-size: 10px;
-`;
-
-const Row = styled.div`
-width: 100%;
-align-items: center;
-justify-content: center;
-  display: flex;
-  flex-direction: row;
-  gap: ${props => props.gap || '30px'};
-`;
-
-const Column = styled.div`
-width: 100%;
-align-items: center;
-justify-content: center;
-  display: flex;
-  flex-direction: column;
-  gap: ${props => props.gap || '30px'};
-`;
 
 export default function Component() {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const SignUp = () => {
-        navigate('/signup');
-    }
+  const SignUp = () => {
+    navigate('/signup');
+  }
 
-    const setBackSetting = useContext(OutletContext);
+  const setBackSetting = useContext(OutletContext);
 
-    setBackSetting(false);
+  setBackSetting(false);
 
-    return (
-        <ContainerCenter>
-            <PageContainer>
-                로그인 페이지
-            </PageContainer>
-        </ContainerCenter>
-    );
+  return (
+    <ContainerCenter>
+      <PageContainer>
+
+        <CustomColumn gap='5rem' width='100%' alignItems='center'>
+
+          <CustomRow gap='10px' width='100%' alignItems='center'>
+            <CustomFont color='white' font='1.5rem'>we DO-to-gether.</CustomFont>
+          </CustomRow>
+
+          <CustomColumn gap='10px' width='100%' alignItems='center'>
+            <Id placeholder='아이디를 입력하세요.' />
+            <Id placeholder='비밀번호를 입력하세요.' />
+
+            <CustomColumn gap='30px' width='100%' alignItems='center'>
+              <CustomRow width='100%' gap='10px'>
+                <Find>
+                  <CustomFont color='#85E176;'>아이디 찾기</CustomFont>
+                </Find>
+                <Find>
+                  <CustomFont color='#85E176;'>비밀번호 찾기</CustomFont>
+                </Find>
+              </CustomRow>
+
+              <LogInButton>
+                <CustomFont color='white'>Log In</CustomFont>
+              </LogInButton>
+            </CustomColumn>
+          </CustomColumn>
+        </CustomColumn>
+
+      </PageContainer>
+    </ContainerCenter>
+  );
 };

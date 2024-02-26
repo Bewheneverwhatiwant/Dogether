@@ -49,7 +49,7 @@ export default function Header({ $background }) {
         <>
             {$background ? (
                 <HeaderContainer>
-                    <CustomRow width='100%' justify-content='space-between' gap='70%'>
+                    <CustomRow width='100%' justify-content='space-between' gap='16rem'>
                         <StyledImg src={'icon_logo.png'} width='30px' height='30px' onClick={Back} />
                         <HeaderButton onClick={SignIn}>LOG IN</HeaderButton>
                     </CustomRow>
