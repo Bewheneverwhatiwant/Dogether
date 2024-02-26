@@ -7,7 +7,9 @@ const StyledImg = styled.img`
     margin-bottom: ${props => props.marginBottom || 0};
     margin-left: ${props => props.marginLeft || 0};
     margin-right: ${props => props.marginRight || 0};
+    padding: ${props => props.padding || 0};
     border-radius: ${props => props.borderRadius || '0'};
+    border: ${props => props.border || 'none'};
 `;
 
 export default StyledImg;
