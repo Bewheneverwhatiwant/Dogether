@@ -6,7 +6,7 @@ import StyledImg from '../../Components/Container/StyledImg';
 import CustomFont from '../../Components/Container/CustomFont';
 import moment from 'moment';
 
-const Banner = styled.div`
+const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,7 @@ const Log = styled.div`
   justify-content: center;
 `;
 
-// 사용자 이름(나와 팀원들), 'TODO-list 기록 보기' 버튼 생성
+// 사용자의 이름, 'TODO-list 기록 보기' 버튼 생성
 const MemberRow = ({ name, logText }) => {
     return (
         <CustomRow width='100%' justifyContent='space-between'>
@@ -68,7 +68,7 @@ const MemberRow = ({ name, logText }) => {
     );
 };
 
-// 열매, TODO-list 누적 반복 출력
+// 사용자 별 열매, TODO-list 개수 반복 출력
 const TodoRow = ({ doneArray, totalTodos }) => {
     return (
         <CustomColumn width='100%' justifyContent='flex-start' gap='0.5rem'>
@@ -86,14 +86,13 @@ const TodoRow = ({ doneArray, totalTodos }) => {
     );
 };
 
-export default function Component() {
-
-    const targetDate = moment('2024-03-03T24:00:00'); // 리워드 D-DAY
+// 팀 이름, 리워드, 날짜, 팀원들을 받아서 반복출력하는 배너
+const Banner = ({ teamName, reward, targetDate, members }) => {
     const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
 
     function calculateTimeRemaining() {
         const now = moment();
-        const duration = moment.duration(targetDate.diff(now));
+        const duration = moment.duration(moment(targetDate).diff(now));
         const days = Math.floor(duration.asDays());
         const hours = duration.hours();
         const minutes = duration.minutes();
@@ -109,30 +108,21 @@ export default function Component() {
         return () => clearInterval(interval);
     }, []);
 
-    //사용자 배열. if 본인일 경우, 이름 옆에 '(나)'를 띄우는 로직 추가 필요 -> API 구성 후에 할 것.
-    const members = [
-        { name: '이나영(나)', logText: 'TODO-list 기록 보기', totalTodos: 20, doneArray: [true, true, false, false, false, false, false] },
-        { name: '이수혁', logText: 'TODO-list 기록 보기', totalTodos: 26, doneArray: [true, true, true, true, false, false, false] },
-        { name: '김재우', logText: 'TODO-list 기록 보기', totalTodos: 23, doneArray: [true, true, true, false, false, false, false] },
-        { name: '정재웅', logText: 'TODO-list 기록 보기', totalTodos: 19, doneArray: [true, true, false, false, false, false, false] },
-        { name: '임승민', logText: 'TODO-list 기록 보기', totalTodos: 15, doneArray: [true, false, false, false, false, false, false] },
-    ];
-
     return (
-        <Banner>
+        <BannerContainer>
             <CustomRow justifyContent='flex-start' width='100%'>
                 <StyledImg src={'icon_team.png'} width='2rem' height='2rem' borderRadius='50px' />
-                <CustomFont color='#353535' fontWeight='bold'>Team 코노모</CustomFont>
+                <CustomFont color='#353535' fontWeight='bold'>{`Team ${teamName}`}</CustomFont>
             </CustomRow>
 
             <ColoredContainer background='linear-gradient(45deg, #6A69E5, #C15CC1)'>
-
                 <CustomRow width='100%' justifyContent='flex-start' gap='0.1rem'>
                     <StyledImg src={'icon_crown.png'} width='1rem' height='1rem' />
                     <CustomFont>Reward:</CustomFont>
                 </CustomRow>
 
-                <CustomFont fontWeight='bold'>주창 회식 쏘기</CustomFont>
+                <CustomFont fontWeight='bold'>{reward}</CustomFont>
+
                 <CustomRow width='100%' justifyContent='flex-start' gap='0.1rem'>
                     <StyledImg src={'icon_crown.png'} width='1rem' height='1rem' />
                     <CustomFont>Whose:</CustomFont>
@@ -151,6 +141,8 @@ export default function Component() {
                     </ColoredContainer>
                 ))}
             </CustomColumn>
-        </Banner>
+        </BannerContainer>
     );
-}
+};
+
+export default Banner;
