@@ -108,10 +108,18 @@ export default function Component() {
               </CustomRow>
 
               <LogInButton>
-                <CustomFont color='white'>Log In</CustomFont>
+                <CustomFont color='#353535'>Log In</CustomFont>
               </LogInButton>
+
+              <CustomRow gap='10px' width='100%' alignItems='center'>
+                <CustomFont color='white'>아직 계정이 없으신가요?</CustomFont>
+                <LogInButton onClick={SignUp}>
+                  <CustomFont color='#353535'>SIGN UP</CustomFont>
+                </LogInButton>
+              </CustomRow>
             </CustomColumn>
           </CustomColumn>
+
         </CustomColumn>
 
       </PageContainer>
