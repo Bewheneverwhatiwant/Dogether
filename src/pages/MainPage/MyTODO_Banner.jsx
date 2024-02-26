@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CustomRow from '../../Components/Container/CustomRow';
 import CustomColumn from '../../Components/Container/CustomColumn';
 import StyledImg from '../../Components/Container/StyledImg';
+import CustomFont from '../../Components/Container/CustomFont';
 
 const Detail = styled.a`
   font-size: ${props => props.font || '0.8rem'};
@@ -64,6 +65,13 @@ export default function Component() {
     const [isChecked_1, setIsChecked_1] = useState(false);
     const [isChecked_2, setIsChecked_2] = useState(false);
 
+    const [checkedCount, setCheckedCount] = useState(0); //TODO 체크된 개수
+
+    useEffect(() => {
+        // 체크된 개수 변경 시에 실행
+        setCheckedCount([isChecked_1, isChecked_2].filter(item => item).length);
+    }, [isChecked_1, isChecked_2]);
+
     const handleCheckboxChange = (isChecked, setIsChecked) => {
         const confirmAction = window.confirm('TODO를 수정하시겠습니까?');
         if (confirmAction) {
@@ -73,10 +81,11 @@ export default function Component() {
 
     return (
         <Banner>
-            <CustomRow justifyContent='flex-start' width='100%'>
-                <StyledImg src={'icon_plus.png'} width='0.8rem' height='0.8rem' borderRadius='50px' border='1px solid #F0F0F0' padding='0.2rem' />
-                <Detail color='#49C635'>TODO 추가/수정</Detail>
+            <CustomRow gap='3px' width='100%' justifyContent='flex-start' paddingLeft='2rem;'>
+                <CustomFont fontWeight='bold' font='1rem'>오늘 완료한 TODO: {checkedCount}</CustomFont>
+                <StyledImg src={'icon_fire.png'} width='1rem' height='1rem' />
             </CustomRow>
+
             <CustomColumn gap='10px' width='100%' alignItems='center'>
                 <TODO>
                     <CustomRow width='100%' justifyContent='space-between'>
@@ -92,6 +101,11 @@ export default function Component() {
                         <Detail font='1rem'>할 일2</Detail>
                     </CustomRow>
                 </TODO>
+
+                <CustomRow justifyContent='flex-start' width='100%' paddingLeft='2rem;'>
+                    <StyledImg src={'icon_plus.png'} width='0.8rem' height='0.8rem' borderRadius='50px' border='1px solid #F0F0F0' padding='0.2rem' />
+                    <Detail color='#49C635'>TODO 추가/수정</Detail>
+                </CustomRow>
             </CustomColumn>
         </Banner>
     );
