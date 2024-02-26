@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import StyledImg from '../Container/StyledImg';
+import CustomRow from '../Container/CustomRow';
 
 const HeaderContainer = styled.header`
 position: fixed;
@@ -13,7 +14,6 @@ z-index: 99;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 70%;
     padding: 10px;
 
     background-color: #353535;
@@ -49,8 +49,10 @@ export default function Header({ $background }) {
         <>
             {$background ? (
                 <HeaderContainer>
-                    <StyledImg src={'icon_logo.png'} width='30px' height='30px' onClick={Back} />
-                    <HeaderButton onClick={SignIn}>LOG IN</HeaderButton>
+                    <CustomRow width='100%' justify-content='space-between' gap='70%'>
+                        <StyledImg src={'icon_logo.png'} width='30px' height='30px' onClick={Back} />
+                        <HeaderButton onClick={SignIn}>LOG IN</HeaderButton>
+                    </CustomRow>
                 </HeaderContainer>
             ) : (
                 <HeaderContainer>
