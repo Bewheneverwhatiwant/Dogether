@@ -19,7 +19,7 @@ const Banner = styled.div`
   padding: 10px;
   gap: 15px;
   border-radius: 20px;
-  min-height: 20vh;
+  min-height: 10vh;
   width: 90%;
   background-color: #85E176;
 `;
@@ -99,6 +99,13 @@ export default function Component() {
         }
     };
 
+    const handleDeleteTodo = (id) => {
+        const confirmAction = window.confirm('TODO를 삭제하시겠습니까?');
+        if (confirmAction) {
+            setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+        }
+    };
+
     return (
         <Banner>
             <CustomRow gap='3px' width='100%' justifyContent='flex-start' paddingLeft='2rem;'>
@@ -108,13 +115,16 @@ export default function Component() {
 
             <CustomColumn gap='10px' width='100%' alignItems='center'>
                 {todos.map((todo) => (
-                    <TODO key={todo.id}>
-                        <CustomRow width='100%' justifyContent='space-between'>
-                            <StyledCheckbox type="checkbox" id={`check${todo.id}`} checked={todo.isChecked} onChange={() => handleCheckboxChange(todo.id)} />
-                            <CheckboxLabel htmlFor={`check${todo.id}`} />
-                            <Detail font='1rem' onClick={() => handleTodoClick(todo.id)}>{todo.text}</Detail>
-                        </CustomRow>
-                    </TODO>
+                    <CustomRow width='100%' justifyContent='space-between' key={todo.id}>
+                        <TODO key={todo.id}>
+                            <CustomRow width='100%' justifyContent='space-between'>
+                                <StyledCheckbox type="checkbox" id={`check${todo.id}`} checked={todo.isChecked} onChange={() => handleCheckboxChange(todo.id)} />
+                                <CheckboxLabel htmlFor={`check${todo.id}`} />
+                                <Detail font='1rem' onClick={() => handleTodoClick(todo.id)}>{todo.text}</Detail>
+                            </CustomRow>
+                        </TODO>
+                        <StyledImg src={'icon_minus.png'} width='2rem' height='2rem' onClick={() => handleDeleteTodo(todo.id)} />
+                    </CustomRow>
                 ))}
 
                 <CustomRow justifyContent='flex-start' width='100%' paddingLeft='2rem;' onClick={handleAddTodo}>
