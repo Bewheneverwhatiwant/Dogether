@@ -8,6 +8,7 @@ import CustomFont from '../../Components/Container/CustomFont';
 const Detail = styled.a`
   font-size: ${props => props.font || '0.8rem'};
   color: ${props => props.color || '#F0F0F0'};
+  cursor: pointer;
 `;
 
 const Banner = styled.div`
@@ -33,7 +34,7 @@ const TODO = styled.div`
   gap: 10px;
   padding: 10px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const Checkbox = styled.input`
@@ -62,47 +63,61 @@ const StyledCheckbox = styled(Checkbox)`
 `;
 
 export default function Component() {
-    const [isChecked_1, setIsChecked_1] = useState(false);
-    const [isChecked_2, setIsChecked_2] = useState(false);
+    const [todos, setTodos] = useState([
+        { id: 1, text: '여기를 눌러 TODO 추가', isChecked: false },
+    ]);
 
-    const [checkedCount, setCheckedCount] = useState(0); //TODO 체크된 개수
-
-    useEffect(() => {
-        // 체크된 개수 변경 시에 실행
-        setCheckedCount([isChecked_1, isChecked_2].filter(item => item).length);
-    }, [isChecked_1, isChecked_2]);
-
-    const handleCheckboxChange = (isChecked, setIsChecked) => {
+    const handleCheckboxChange = (id) => {
         const confirmAction = window.confirm('TODO를 수정하시겠습니까?');
         if (confirmAction) {
-            setIsChecked(!isChecked);
+            setTodos((prevTodos) =>
+                prevTodos.map((todo) =>
+                    todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo
+                )
+            );
+        }
+    };
+
+    const handleTodoClick = (id) => {
+        const newText = prompt('새로운 TODO-list를 입력하세요.');
+        if (newText !== null) {
+            setTodos((prevTodos) =>
+                prevTodos.map((todo) =>
+                    todo.id === id ? { ...todo, text: newText } : todo
+                )
+            );
+        }
+    };
+
+    const handleAddTodo = () => {
+        const newText = prompt('추가할 TODO-list를 입력하세요.');
+        if (newText !== null) {
+            setTodos((prevTodos) => [
+                ...prevTodos,
+                { id: Date.now(), text: newText, isChecked: false },
+            ]);
         }
     };
 
     return (
         <Banner>
             <CustomRow gap='3px' width='100%' justifyContent='flex-start' paddingLeft='2rem;'>
-                <CustomFont fontWeight='bold' font='1rem'>오늘 완료한 TODO: {checkedCount}</CustomFont>
+                <CustomFont fontWeight='bold' font='1rem'>오늘 완료한 TODO: {todos.filter(todo => todo.isChecked).length}</CustomFont>
                 <StyledImg src={'icon_fire.png'} width='1rem' height='1rem' />
             </CustomRow>
 
             <CustomColumn gap='10px' width='100%' alignItems='center'>
-                <TODO>
-                    <CustomRow width='100%' justifyContent='space-between'>
-                        <StyledCheckbox type="checkbox" id="check1" checked={isChecked_1} onChange={() => handleCheckboxChange(isChecked_1, setIsChecked_1)} />
-                        <CheckboxLabel htmlFor="check1" />
-                        <Detail font='1rem'>할 일</Detail>
-                    </CustomRow>
-                </TODO>
-                <TODO>
-                    <CustomRow width='100%' justifyContent='space-between'>
-                        <StyledCheckbox type="checkbox" id="check2" checked={isChecked_2} onChange={() => handleCheckboxChange(isChecked_2, setIsChecked_2)} />
-                        <CheckboxLabel htmlFor="check2" />
-                        <Detail font='1rem'>할 일2</Detail>
-                    </CustomRow>
-                </TODO>
+                {todos.map((todo) => (
+                    <TODO key={todo.id}>
+                        <CustomRow width='100%' justifyContent='space-between'>
+                            <StyledCheckbox type="checkbox" id={`check${todo.id}`} checked={todo.isChecked} onChange={() => handleCheckboxChange(todo.id)} />
+                            <CheckboxLabel htmlFor={`check${todo.id}`} />
+                            <Detail font='1rem' onClick={() => handleTodoClick(todo.id)}>{todo.text}</Detail>
+                        </CustomRow>
+                    </TODO>
+                ))}
 
-                <CustomRow justifyContent='flex-start' width='100%' paddingLeft='2rem;'>
+                <CustomRow justifyContent='flex-start' width='100%' paddingLeft='2rem;' onClick={handleAddTodo}>
                     <StyledImg src={'icon_plus.png'} width='0.8rem' height='0.8rem' borderRadius='50px' border='1px solid #F0F0F0' padding='0.2rem' />
                     <Detail color='#49C635'>TODO 추가/수정</Detail>
                 </CustomRow>
