@@ -5,8 +5,10 @@ import { useContext } from 'react';
 import { OutletContext } from '../ForOutlet';
 import CustomRow from '../../Components/Container/CustomRow';
 import CustomColumn from '../../Components/Container/CustomColumn';
+import CustomCenter from '../../Components/Container/CustomCenter';
 import StyledImg from '../../Components/Container/StyledImg';
 import MyTODO_Banner from './MyTODO_Banner';
+import TeamTODO_Banner from './TeamTODO_Banner';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -42,10 +44,20 @@ export default function Component() {
   return (
     <ContainerCenter>
       <PageContainer>
-        <CustomRow width='90%' justifyContent='flex-start' paddingLeft='10px'>
-          <Title>Today's My TODO-list</Title>
+        <CustomRow width='90%' justifyContent='flex-start' paddingLeft='0.1rem' gap='0.1rem'>
+          <StyledImg src={'icon_pen.png'} width='2rem' height='2rem' />
+          <CustomCenter>
+            <Title>Today's My TODO-list</Title>
+          </CustomCenter>
         </CustomRow>
         <MyTODO_Banner />
+        <CustomRow width='90%' justifyContent='flex-start' paddingLeft='0.1rem' gap='0.1rem'>
+          <StyledImg src={'icon_pen.png'} width='2rem' height='2rem' />
+          <CustomCenter>
+            <Title>My Team's TODO-list</Title>
+          </CustomCenter>
+        </CustomRow>
+        <TeamTODO_Banner />
       </PageContainer>
     </ContainerCenter>
   );
