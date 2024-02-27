@@ -31,6 +31,7 @@ color: white;
 text-align: center;
 justify-content: center;
 border: none;
+width: 100px;
 `;
 
 export default function Header({ $background }) {
@@ -49,8 +50,7 @@ export default function Header({ $background }) {
         <>
             {$background ? (
                 <HeaderContainer>
-                    <CustomRow width='100%' justify-content='space-between' gap='16rem'>
-                        <StyledImg src={'icon_logo.png'} width='30px' height='30px' onClick={Back} />
+                    <CustomRow width='100%' justifyContent='flex-end'>
                         <HeaderButton onClick={SignIn}>LOG IN</HeaderButton>
                     </CustomRow>
                 </HeaderContainer>

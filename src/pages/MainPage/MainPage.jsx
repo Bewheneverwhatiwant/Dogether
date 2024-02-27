@@ -34,6 +34,17 @@ const Title = styled.h1`
   color: #F0F0F0;
 `;
 
+const TeamButton = styled.button`
+background-color: transparent;
+border: 1px solid #85E176;
+color:  #85E176;
+border-radius: 20px;
+align-items: center;
+justify-content: center;
+padding: 0.2rem;
+width: 10rem;
+`;
+
 const Component = () => {
   const setBackSettingValue = useContext(OutletContext);
 
@@ -85,6 +96,11 @@ const Component = () => {
           <CustomCenter>
             <Title>My Team's TODO-list</Title>
           </CustomCenter>
+        </CustomRow>
+
+        <CustomRow width='90%' justifyContent='space-between'>
+          <TeamButton>Team 생성하기</TeamButton>
+          <TeamButton>Team 입장하기</TeamButton>
         </CustomRow>
 
         {banners.map((banner, index) => (
