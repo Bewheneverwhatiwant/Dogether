@@ -42,7 +42,7 @@ border-radius: 20px;
 align-items: center;
 justify-content: center;
 padding: 0.2rem;
-width: 10rem;
+width: 8rem;
 `;
 
 const Component = () => {

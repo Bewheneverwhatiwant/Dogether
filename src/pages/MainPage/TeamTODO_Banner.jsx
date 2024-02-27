@@ -110,9 +110,14 @@ const Banner = ({ teamName, reward, targetDate, members }) => {
 
     return (
         <BannerContainer>
-            <CustomRow justifyContent='flex-start' width='100%'>
-                <StyledImg src={'icon_team.png'} width='2rem' height='2rem' borderRadius='50px' />
-                <CustomFont color='#353535' fontWeight='bold'>{`Team ${teamName}`}</CustomFont>
+            <CustomRow width='100%' justifyContent='space-between'>
+                <CustomRow justifyContent='flex-start' width='100%'>
+                    <StyledImg src={'icon_team.png'} width='2rem' height='2rem' borderRadius='50px' />
+                    <CustomFont color='#353535' fontWeight='bold'>{`Team ${teamName}`}</CustomFont>
+                </CustomRow>
+                <Log>
+                    <CustomFont>탈퇴</CustomFont>
+                </Log>
             </CustomRow>
 
             <ColoredContainer background='linear-gradient(45deg, #6A69E5, #C15CC1)'>
