@@ -58,6 +58,7 @@ const Component = () => {
       teamName: '코노모',
       reward: '주창 회식 쏘기',
       targetDate: moment('2024-03-03T24:00:00'),
+      ImBoss: false,
       members: [
         { name: '이나영', logText: 'TODO-list 기록 보기', totalTodos: 20, doneArray: [true, true, false, false, false, false, false], isBoss: false, isMe: true },
         { name: '이수혁', logText: 'TODO-list 기록 보기', totalTodos: 26, doneArray: [true, true, true, true, false, false, false], isBoss: true, isMe: false },
@@ -71,6 +72,7 @@ const Component = () => {
       teamName: '우리 가족 !!',
       reward: '용돈 10만원',
       targetDate: moment('2024-03-06T24:00:00'),
+      ImBoss: true,
       members: [
         { name: '이나영', logText: 'TODO-list 기록 보기', totalTodos: 15, doneArray: [true, true, true, true, true, false, false, false, false, false], isBoss: true, isMe: true },
         { name: '이용수', logText: 'TODO-list 기록 보기', totalTodos: 8, doneArray: [true, true, true, true, false, false, false, false, false, false,], isBoss: false, isMe: false },

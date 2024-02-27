@@ -60,9 +60,16 @@ const Log = styled.div`
 const MemberRow = ({ name, logText, isBoss, isMe }) => {
     return (
         <CustomRow width='100%' justifyContent='space-between'>
-            <CustomRow width='100%' justifyContent='flex-start' gap='0.2rem'>
-                <CustomFont font='1rem'>{name}{isBoss && '(방장)'}{isMe && '(나)'}</CustomFont>
-            </CustomRow>
+            <CustomColumn width='100%' justifyContent='center' gap='0.2rem'>
+                <CustomRow width='100%' justifyContent='flex-start' gap='0.2rem'>
+                    {isBoss &&
+                        <StyledImg src={'icon_crown.png'} width='1rem' height='1rem' />}
+
+                    <CustomFont font='1rem'>
+                        {name}{isMe && '(나)'}
+                    </CustomFont>
+                </CustomRow>
+            </CustomColumn>
             <Log>{logText}</Log>
         </CustomRow>
     );
@@ -87,7 +94,8 @@ const TodoRow = ({ doneArray, totalTodos }) => {
 };
 
 // 팀 이름, 리워드, 날짜, 팀원들을 받아서 반복출력하는 배너
-const Banner = ({ teamName, reward, targetDate, members }) => {
+const Banner = ({ teamName, reward, targetDate, members, ImBoss }) => {
+
     const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
 
     function calculateTimeRemaining() {
@@ -122,20 +130,44 @@ const Banner = ({ teamName, reward, targetDate, members }) => {
 
             <ColoredContainer background='linear-gradient(45deg, #6A69E5, #C15CC1)'>
                 <CustomRow width='100%' justifyContent='flex-start' gap='0.1rem'>
-                    <StyledImg src={'icon_crown.png'} width='1rem' height='1rem' />
+                    <StyledImg src={'icon_diamond.png'} width='1rem' height='0.8rem' />
                     <CustomFont>Reward:</CustomFont>
                 </CustomRow>
 
-                <CustomFont fontWeight='bold'>{reward}</CustomFont>
+                <CustomColumn width='100%' alignItems='center' gap='0.3rem'>
+                    <CustomRow width='100%' alignItems='center' gap='0.1rem'>
+                        <CustomFont fontWeight='bold'>{reward}</CustomFont>
+                    </CustomRow>
+
+                    {ImBoss &&
+                        <CustomRow width='100%' justifyContent='center'>
+                            <Log>
+                                <CustomFont color='white'>리워드 수정</CustomFont>
+                            </Log>
+                        </CustomRow>
+                    }
+                </CustomColumn>
 
                 <CustomRow width='100%' justifyContent='flex-start' gap='0.1rem'>
-                    <StyledImg src={'icon_crown.png'} width='1rem' height='1rem' />
+                    <StyledImg src={'icon_diamond.png'} width='1rem' height='0.8rem' />
                     <CustomFont>Whose:</CustomFont>
                 </CustomRow>
 
-                <CustomFont fontWeight='bold'>
-                    {`${timeRemaining.days}일 ${timeRemaining.hours}시간 ${timeRemaining.minutes}분 ${timeRemaining.seconds}초 남음`}
-                </CustomFont>
+                <CustomColumn width='100%' alignItems='center' gap='0.3rem'>
+                    <CustomRow width='100%' alignItems='center'>
+                        <CustomFont fontWeight='bold'>
+                            {`${timeRemaining.days}일 ${timeRemaining.hours}시간 ${timeRemaining.minutes}분 ${timeRemaining.seconds}초 남음`}
+                        </CustomFont>
+                    </CustomRow>
+
+                    {ImBoss &&
+                        <CustomRow width='100%' justifyContent='center'>
+                            <Log>
+                                <CustomFont color='white'>리워드 주기 수정</CustomFont>
+                            </Log>
+                        </CustomRow>
+                    }
+                </CustomColumn>
             </ColoredContainer>
 
             <CustomColumn gap='10px' width='100%' alignItems='center'>
