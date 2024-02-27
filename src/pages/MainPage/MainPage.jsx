@@ -59,11 +59,11 @@ const Component = () => {
       reward: '주창 회식 쏘기',
       targetDate: moment('2024-03-03T24:00:00'),
       members: [
-        { name: '이나영(나)', logText: 'TODO-list 기록 보기', totalTodos: 20, doneArray: [true, true, false, false, false, false, false] },
-        { name: '이수혁', logText: 'TODO-list 기록 보기', totalTodos: 26, doneArray: [true, true, true, true, false, false, false] },
-        { name: '김재우', logText: 'TODO-list 기록 보기', totalTodos: 23, doneArray: [true, true, true, false, false, false, false] },
-        { name: '정재웅', logText: 'TODO-list 기록 보기', totalTodos: 19, doneArray: [true, true, false, false, false, false, false] },
-        { name: '임승민', logText: 'TODO-list 기록 보기', totalTodos: 15, doneArray: [true, false, false, false, false, false, false] },
+        { name: '이나영', logText: 'TODO-list 기록 보기', totalTodos: 20, doneArray: [true, true, false, false, false, false, false], isBoss: false, isMe: true },
+        { name: '이수혁', logText: 'TODO-list 기록 보기', totalTodos: 26, doneArray: [true, true, true, true, false, false, false], isBoss: true, isMe: false },
+        { name: '김재우', logText: 'TODO-list 기록 보기', totalTodos: 23, doneArray: [true, true, true, false, false, false, false], isBoss: false, isMe: false },
+        { name: '정재웅', logText: 'TODO-list 기록 보기', totalTodos: 19, doneArray: [true, true, false, false, false, false, false], isBoss: false, isMe: false },
+        { name: '임승민', logText: 'TODO-list 기록 보기', totalTodos: 15, doneArray: [true, false, false, false, false, false, false], isBoss: false, isMe: false },
       ],
     },
 
@@ -72,9 +72,9 @@ const Component = () => {
       reward: '용돈 10만원',
       targetDate: moment('2024-03-06T24:00:00'),
       members: [
-        { name: '이나영(나)', logText: 'TODO-list 기록 보기', totalTodos: 15, doneArray: [true, true, true, true, true, false, false, false, false, false] },
-        { name: '이용수', logText: 'TODO-list 기록 보기', totalTodos: 8, doneArray: [true, true, true, true, false, false, false, false, false, false,] },
-        { name: '이솔민', logText: 'TODO-list 기록 보기', totalTodos: 5, doneArray: [true, true, false, false, false, false, false, false, false, false,] },
+        { name: '이나영', logText: 'TODO-list 기록 보기', totalTodos: 15, doneArray: [true, true, true, true, true, false, false, false, false, false], isBoss: true, isMe: true },
+        { name: '이용수', logText: 'TODO-list 기록 보기', totalTodos: 8, doneArray: [true, true, true, true, false, false, false, false, false, false,], isBoss: false, isMe: false },
+        { name: '이솔민', logText: 'TODO-list 기록 보기', totalTodos: 5, doneArray: [true, true, false, false, false, false, false, false, false, false,], isBoss: false, isMe: false },
       ]
     }
   ];

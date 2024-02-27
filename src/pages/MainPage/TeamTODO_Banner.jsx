@@ -57,11 +57,11 @@ const Log = styled.div`
 `;
 
 // 사용자의 이름, 'TODO-list 기록 보기' 버튼 생성
-const MemberRow = ({ name, logText }) => {
+const MemberRow = ({ name, logText, isBoss, isMe }) => {
     return (
         <CustomRow width='100%' justifyContent='space-between'>
             <CustomRow width='100%' justifyContent='flex-start' gap='0.2rem'>
-                <CustomFont font='1rem'>{name}</CustomFont>
+                <CustomFont font='1rem'>{name}{isBoss && '(방장)'}{isMe && '(나)'}</CustomFont>
             </CustomRow>
             <Log>{logText}</Log>
         </CustomRow>
