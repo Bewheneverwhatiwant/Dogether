@@ -62,6 +62,14 @@ const StyledCheckbox = styled(Checkbox)`
   }
 `;
 
+const ConfirmButton = styled.button`
+width: 9rem;
+padding: 0.5rem;
+background: linear-gradient(45deg, #6A69E5, #C15CC1);
+border: none;
+border-radius: 10px;
+`;
+
 export default function Component() {
     const [todos, setTodos] = useState([
         { id: 1, text: '여기를 눌러 TODO 추가', isChecked: false },
@@ -126,6 +134,12 @@ export default function Component() {
                         <StyledImg src={'icon_minus.png'} width='2rem' height='2rem' onClick={() => handleDeleteTodo(todo.id)} />
                     </CustomRow>
                 ))}
+
+                <CustomRow justifyContent='flex-end' width='100%' >
+                    <ConfirmButton>
+                        <CustomFont color='white' font='0.7rem' fontWeight='bold'>오늘의 TODO 확정</CustomFont>
+                    </ConfirmButton>
+                </CustomRow>
 
                 <CustomRow justifyContent='flex-start' width='100%' paddingLeft='2rem;' onClick={handleAddTodo}>
                     <StyledImg src={'icon_plus.png'} width='0.8rem' height='0.8rem' borderRadius='50px' border='1px solid #F0F0F0' padding='0.2rem' />

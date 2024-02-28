@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import CustomColumn from '../Container/CustomColumn';
 
 const FooterContainer = styled.footer`
 display: flex;
@@ -13,22 +14,28 @@ color: white;
 gap: 10px;
 `;
 
-const Title = styled.h1`
-font-size: 15px;
-font-family: 'RIDIBatang';
-color: white;
-`;
-
 const Detail = styled.a`
 font-size: 10px;
 font-family: 'RIDIBatang';
 color: white;
 `;
 
+const Out = styled.button`
+background: transparent;
+border: none;
+font-size: 10px;
+font-family: 'RIDIBatang';
+color: white;
+text-decoration: underline;
+`;
+
 export default function Component() {
     return (
         <FooterContainer>
-            <Detail>Dogether: Do-to-gether</Detail>
+            <CustomColumn width='100%' alignItems='center' gap='0.6rem'>
+                <Detail>Dogether: Do-to-gether</Detail>
+                <Out>서비스 탈퇴</Out>
+            </CustomColumn>
         </FooterContainer>
     );
 };
